@@ -28,6 +28,9 @@ galaxy_info:
     - sid
     - stretch
     - wheezy
+  - name: EL
+    versions:
+    - 7
 
   galaxy_tags:
     - nvidia
