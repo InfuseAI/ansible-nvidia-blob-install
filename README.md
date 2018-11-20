@@ -13,7 +13,7 @@ apt, internet access, nvidia hardware. Should be run as root or with 'become: ye
 Role Variables
 --------------
 
-nvidia\_dirver\_version. Default is to current version, '367.35'.
+nvidia\_dirver\_version. Default is to current version, '390.67'.
 
 Dependencies
 ------------
@@ -27,7 +27,7 @@ Example Playbook
 - hosts: all
   become: yes
   vars:
-   - nvidia_dirver_version: 370.23
+   - nvidia_dirver_version: 390.67
   roles:
    - nvidia-blob-install
 

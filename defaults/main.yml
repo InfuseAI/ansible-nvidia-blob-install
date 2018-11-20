@@ -1,3 +1,3 @@
 ---
 # defaults file for nvidia-blob-install
-nvidia_driver_version: '367.35'
+nvidia_driver_version: '390.67'
