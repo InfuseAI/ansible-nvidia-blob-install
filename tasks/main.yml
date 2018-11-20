@@ -14,6 +14,16 @@
     - build-essential
     - dkms
     - linux-generic
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: Install build dependencies
+  yum:
+    name: "{{ item }}"
+  with_items:
+    - "@development-tools"
+    - dkms
+    - kernel-devel
+  when: ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'RedHat'
 
 - name: remove nouveau driver
   shell: rmmod nouveau
