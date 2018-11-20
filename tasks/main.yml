@@ -20,7 +20,7 @@
   yum:
     name: "{{ item }}"
   with_items:
-    - "@development-tools"
+    - "@development"
     - dkms
     - kernel-devel
   when: ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'RedHat'
@@ -37,7 +37,17 @@
 
 - name: update initramfs
   shell: update-initramfs -u
-  when: blacklist_changed|changed
+  when:
+    - blacklist_changed|changed
+    - ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: update initramfs
+  shell: |
+    cp /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r).img.bak && \
+    dracut -f
+  when:
+    - blacklist_changed|changed
+    - ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'RedHat'
 
 - name: Running NVIDIA installer
   shell: "{{exe}} -a -z --no-x-check --dkms -c -s"
